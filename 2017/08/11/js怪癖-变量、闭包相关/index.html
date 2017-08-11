@@ -94,16 +94,17 @@
 
 
 
-<meta name="description" content="分享所学所思">
-<meta property="og:type" content="website">
-<meta property="og:title" content="大城小筑">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="变量的作用范围 在大多数编程语言中，变量的声明周期是“定义此变量的块（block）”。但是在JavaScript，在ES6前，变量的作用域和函数息息相关，而不是大括号 如何创建块作用域： IIFE    1234567891011121314151617181920212223	function func (x) &amp;#123;		console.log(tmp) // ReferenceErro:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js怪癖-变量、闭包相关">
+<meta property="og:url" content="http://yoursite.com/2017/08/11/js怪癖-变量、闭包相关/index.html">
 <meta property="og:site_name" content="大城小筑">
-<meta property="og:description" content="分享所学所思">
+<meta property="og:description" content="变量的作用范围 在大多数编程语言中，变量的声明周期是“定义此变量的块（block）”。但是在JavaScript，在ES6前，变量的作用域和函数息息相关，而不是大括号 如何创建块作用域： IIFE    1234567891011121314151617181920212223	function func (x) &amp;#123;		console.log(tmp) // ReferenceErro:">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-11T09:55:34.836Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大城小筑">
-<meta name="twitter:description" content="分享所学所思">
+<meta name="twitter:title" content="js怪癖-变量、闭包相关">
+<meta name="twitter:description" content="变量的作用范围 在大多数编程语言中，变量的声明周期是“定义此变量的块（block）”。但是在JavaScript，在ES6前，变量的作用域和函数息息相关，而不是大括号 如何创建块作用域： IIFE    1234567891011121314151617181920212223	function func (x) &amp;#123;		console.log(tmp) // ReferenceErro:">
 
 
 
@@ -132,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/11/js怪癖-变量、闭包相关/"/>
 
 
 
 
 
-  <title>大城小筑</title>
+  <title>js怪癖-变量、闭包相关 | 大城小筑</title>
   
 
 
@@ -157,9 +158,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -262,9 +261,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -294,9 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/11/js怪癖-变量、闭包相关/" itemprop="url">js怪癖-变量、闭包相关</a></h1>
+          <h1 class="post-title" itemprop="name headline">js怪癖-变量、闭包相关</h1>
         
 
         <div class="post-meta">
@@ -346,9 +343,7 @@
       
 
       
-        
-          
-            <h2 id="变量的作用范围"><a href="#变量的作用范围" class="headerlink" title="变量的作用范围"></a>变量的作用范围</h2><ol>
+        <h2 id="变量的作用范围"><a href="#变量的作用范围" class="headerlink" title="变量的作用范围"></a>变量的作用范围</h2><ol>
 <li>在大多数编程语言中，变量的声明周期是“定义此变量的块（block）”。但是在JavaScript，在ES6前，变量的作用域和函数息息相关，而不是大括号</li>
 <li><p>如何创建块作用域： IIFE  </p>
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">func</span> (<span class="params">x</span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(tmp) <span class="comment">// ReferenceErro: tmp is not defined</span></div><div class="line">		<span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</div><div class="line">			(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">				<span class="keyword">var</span> tmp</div><div class="line">				<span class="comment">// 做原本想做的事情</span></div><div class="line">			&#125;)()</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="string">``</span><span class="string">`  </span></div><div class="line"><span class="string">	即使用一个IIFE,将tmp的作用域限制在包含它的`</span><span class="keyword">if</span><span class="string">`语句块中</span></div><div class="line"><span class="string">3. ES6中，let、const解决了这个问题</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">## 闭包</span></div><div class="line"><span class="string">1. 当函数离开了创建它的位置后，仍然可以获取到该位置上存在的所有变量。</span></div><div class="line"><span class="string">2. 先来一个闭包  </span></div><div class="line"><span class="string">	`</span><span class="string">``</span>javascript</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">incrementorFactory</span> (<span class="params">start, step</span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">// 我们定义这个匿名函数叫 (*)</span></div><div class="line">			start += step</div><div class="line">			<span class="keyword">return</span> start</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
@@ -446,8 +441,6 @@
 </ol>
 <p>参考链接：<br><a href="http://www.crockford.com/javascript/private.html" target="_blank" rel="external">http://www.crockford.com/javascript/private.html</a><br><a href="https://github.com/justjavac/12-javascript-quirks/blob/master/cn/6-the-scope-of-variables.md" target="_blank" rel="external">https://github.com/justjavac/12-javascript-quirks/blob/master/cn/6-the-scope-of-variables.md</a><br><a href="https://github.com/justjavac/12-javascript-quirks/blob/master/cn/7-inadvertent-sharing-of-variables-via-closures.md" target="_blank" rel="external">https://github.com/justjavac/12-javascript-quirks/blob/master/cn/7-inadvertent-sharing-of-variables-via-closures.md</a></p>
 
-          
-        
       
     </div>
     
@@ -464,229 +457,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/07/js怪癖-undefined和null/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Damon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大城小筑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/07/js怪癖-undefined和null/" itemprop="url">js怪癖-undefined和null及引申</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T23:20:12+08:00">
-                2017-08-07
-              </time>
+              <a href="/2017/08/07/js怪癖-undefined和null/" rel="next" title="js怪癖-undefined和null及引申">
+                <i class="fa fa-chevron-left"></i> js怪癖-undefined和null及引申
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="undefined-和-null"><a href="#undefined-和-null" class="headerlink" title="undefined 和 null"></a><code>undefined</code> 和 <code>null</code></h1><ol>
-<li><code>undefined</code> 是JavaScript语言本身分配的，如果一个变量还没有被初始化，那么他的值就是 <code>undefined</code></li>
-<li><code>null</code> 是被开发者用来明确指出某个值是缺失的，例如，对于<code>JSON.stringify()</code></li>
-<li><p>如果需要知道变量 <code>x</code> 是否有值，通常情况下，你需要同时，校验 <code>undefined</code> 和 <code>null</code>。</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">	<span class="keyword">if</span> (x != <span class="literal">null</span>) &#123;</div><div class="line">		<span class="comment">// 有值的操作 (false, -0, +0, NaN)都被认为是有值</span></div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="comment">// 没有值时，执行的操作</span></div><div class="line">	&#125;</div><div class="line"><span class="string">``</span><span class="string">`  </span></div><div class="line"><span class="string">相等于</span></div><div class="line"><span class="string">`</span><span class="string">``</span>javascript</div><div class="line">	<span class="keyword">if</span> (v !== <span class="literal">undefined</span> &amp;&amp; v!== <span class="literal">null</span>) &#123;</div><div class="line">		<span class="comment">// 有值</span></div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="comment">// 没值</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<p> 另外一种逻辑</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (x == <span class="literal">null</span>) &#123;</div><div class="line">	<span class="comment">// 没值</span></div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="comment">// 有值</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h1><h3 id="0-提要"><a href="#0-提要" class="headerlink" title="0. 提要"></a>0. 提要</h3><ol>
-<li>自动转换为布尔值通常不会引起问题，而且往往很有用</li>
-</ol>
-<h3 id="1-隐式转换为布尔：-“-truthy-”-和-“-falsy-”"><a href="#1-隐式转换为布尔：-“-truthy-”-和-“-falsy-”" class="headerlink" title="1. 隐式转换为布尔： “ truthy ” 和 “ falsy ”"></a>1. 隐式转换为布尔： “ truthy ” 和 “ falsy ”</h3><ol>
-<li>当JavaScript需要一个布尔值时（<code>if</code> 语句），会触发隐式转换为布尔值,Boolean()</li>
-<li>算法<ol>
-<li>下面这些值将被转换为false<ol>
-<li>undefined, null</li>
-<li>Boolea: false</li>
-<li>Number: -0, +0, NaN</li>
-<li>String: ‘’</li>
-</ol>
-</li>
-<li>其他值都被认为是 <code>true</code></li>
-</ol>
-</li>
-</ol>
-<h3 id="2-字符串的隐式转换"><a href="#2-字符串的隐式转换" class="headerlink" title="2. 字符串的隐式转换"></a>2. 字符串的隐式转换</h3><ol>
-<li>加运算符 <code>+</code>,当其中一个操作数是字符串的时候，就会执行拼接字符串的操作  </li>
-</ol>
-<h3 id="3-对象的隐式转换"><a href="#3-对象的隐式转换" class="headerlink" title="3. 对象的隐式转换"></a>3. 对象的隐式转换</h3><ol>
-<li>只有在 JavaScript 表达式或语句需要用到数字或字符串时，对象才被隐式转换。<ol>
-<li>需要转换为数字时<ol>
-<li>调用 <code>valueOf()</code>，如果结果是原始值，则将其转换为一个数字</li>
-<li>否则，调用 <code>toString()</code>方法，如果结果时原始值，则将其转换为一个数字</li>
-<li>否则，抛出一个类型错误</li>
-</ol>
-</li>
-<li>需要转换为字符串的时候<ol>
-<li>上面的算法，第一步与第二步调换。</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="参数的处理"><a href="#参数的处理" class="headerlink" title="参数的处理"></a>参数的处理</h2><ol>
-<li>可以传递任意的参数<ol>
-<li>缺失参数的值是undefined</li>
-<li>多出来的参数则被直接忽略掉</li>
-<li>ES6: 参数默认值</li>
-<li>ES6: 不定参数，必须在最后一个</li>
-</ol>
-</li>
-<li>所有传递的参数都储存在一个特别的，类数组对象 arguments中</li>
-<li><p>判断参数是否传递了？</p>
-<ol>
-<li><p>一个不严谨的方法  </p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasParameter</span> (<span class="params">param</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (param) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">'yse'</span></div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">'no'</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p> 这个情况，对于虚拟值（falsy）的运用是非法的，比如false、0以及空字符串都会被解析为缺失参数</p>
-</li>
-<li>仅仅判断undefined   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function hasParameter (param) &#123;</div><div class="line">	if (typeof param !== undefined) &#123;</div><div class="line">		return &apos;yes&apos;</div><div class="line">	&#125; else &#123;</div><div class="line">		return &apos;no&apos;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>参数默认值ES5实现</p>
-<ol>
-<li><p>简单版，传递虚拟值（falsy）: false、0 、空字符等同于没传递，将会使用默认值  </p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">plus</span> (<span class="params">x, y</span>) </span>&#123;</div><div class="line">	x = x || <span class="number">1</span></div><div class="line">	y = y || <span class="number">1</span></div><div class="line">	<span class="keyword">return</span> x * y</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>严谨版，<code>typeof x === undefined</code></p>
-</li>
-</ol>
-</li>
-<li><p>强制执行一定数量的参数</p>
-<ol>
-<li>通过<code>arguments.length</code>验证   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">x, y</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">2</span>) &#123;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Need at most 2 parameter'</span>)</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> ( <span class="built_in">arguments</span>.length &lt; <span class="number">2</span>) &#123;</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Need at least 2 parameter'</span>)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> x + y</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>arguments 不是 array</p>
-<ol>
-<li>arguments 并不是 array,它只是像array，暂且知道两点方法像array<ol>
-<li>获取第i个参数，argument[i]</li>
-<li>argument.length</li>
-</ol>
-</li>
-<li>转换函数   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fromArray</span> (<span class="params">arrayLikeValue</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(arrayLikeValue)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>函数参数的个数</p>
-<ol>
-<li>函数直接传入参数是最常见的</li>
-<li>不过如果参数个数太多。程序的可读性就下降了，调用起来也麻烦 – 比如记不清每个位置的参数含义，记不清顺序等。</li>
-<li>通常函数参数的个数不应该超过4个。</li>
-<li>如果有更多的配置需求呢？把多个参数合成为一组配置，以单一参数传递，JS中就是对象<code>object</code></li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -696,138 +488,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/05/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Damon">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="大城小筑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/05/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T23:20:12+08:00">
-                2017-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -835,6 +500,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -855,8 +524,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -918,6 +596,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的作用范围"><span class="nav-number">1.</span> <span class="nav-text">变量的作用范围</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1037,10 +731,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
